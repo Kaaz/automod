@@ -1,9 +1,16 @@
 import discord
 import asyncio
 
+import sys
+
 from Cfg import Config
 
 cfg = Config("application.ini")
+
+if not cfg.enabled:
+    print("[error] Application not enabled;")
+    print(" You can enable it in application.ini")
+    sys.exit(0)
 client = discord.Client()
 
 

@@ -3,6 +3,8 @@ import configparser
 
 def set_default_settings():
     parser = configparser.ConfigParser()
+    parser.add_section('general')
+    parser.set('general', 'enabled', 'false')
     parser.add_section('discord')
     parser.set('discord', 'bot_token', '?')
     parser.set('discord', 'creator_id', '?')
@@ -11,6 +13,7 @@ def set_default_settings():
 
 class Config:
     discord_token = None
+    enabled = False
 
     def __init__(self, file):
         self.config_file = file
@@ -26,6 +29,7 @@ class Config:
 
     def load_settings(self, parser):
         self.discord_token = parser.get('discord', 'bot_token')
+        self.enabled = parser.getboolean('general', 'enabled')
 
 
 @property
