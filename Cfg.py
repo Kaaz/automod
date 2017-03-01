@@ -8,6 +8,11 @@ def set_default_settings():
     parser.add_section('discord')
     parser.set('discord', 'bot_token', '?')
     parser.set('discord', 'creator_id', '?')
+    parser.add_section('database')
+    parser.set('database', 'host', 'localhost')
+    parser.set('database', 'user', 'root')
+    parser.set('database', 'pass', '')
+    parser.set('database', 'database', 'discord')
     return parser
 
 
@@ -16,7 +21,6 @@ class Config:
     enabled = False
 
     def __init__(self, file):
-        self.config_file = file
         config = set_default_settings()
         if not config.read(file, encoding='utf-8'):
             print('Config file {0} does not exist'.format(file))
